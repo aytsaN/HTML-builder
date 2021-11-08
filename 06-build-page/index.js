@@ -1,4 +1,4 @@
-const { copyFile, mkdir, rmdir, readdir, readFile, writeFile, lstat } = require('fs/promises')
+const { copyFile, mkdir, rm, readdir, readFile, writeFile, lstat } = require('fs/promises')
 const path = require('path')
 
 const projectDirPath = path.join(__dirname, '/project-dist')
@@ -58,7 +58,7 @@ const copyDir = async function (srcDir, destDir) {
 }
 
 const buildPage = async (templatePath, componentsDirPath, styleDirPath, assetDirPath, destDirPath) => {
-  await rmdir(destDirPath, { recursive: true })
+  await rm(destDirPath, { recursive: true, force: true })
   await mkdir(destDirPath)
 
   const destHtmlPath = path.join(destDirPath, 'index.html')
